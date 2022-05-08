@@ -1,0 +1,27 @@
+.postCard{
+    width: 40vw;
+    margin: 30px auto;
+}
+.cardFooter{
+    display: flex;
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 17px 0px;
+        &:hover{
+            background-color: rgba(240, 248, 255, 0.137);
+        }
+    }
+    .downvote{
+        width: 50%;
+        border-left: 1px solid #ffffff22;
+    }
+    .upvote{
+        border-right: 1px solid #ffffff22;
+        width: 50%;
+    }
+    .downvote_icon{
+        transform: rotate(180deg);
+    }
+}

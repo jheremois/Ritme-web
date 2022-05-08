@@ -1,0 +1,604 @@
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@keyframes fadeIns {
+  from {
+    opacity: 0%;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fadeInAni{
+  animation: fadeIns 200ms linear;
+}
+.spinAni{
+  border-radius: 200px;
+  width: 30px;
+  height: 30px;
+  animation: spin 800ms infinite linear;
+  border: solid 4px transparent;
+  border-bottom:  solid 4px var(--indigo);
+  border-left:  solid 4px var(--indigo);
+}
+
+
+:root {
+  --fullwidth: 100%;
+  --black: #1C1C1E;
+  --gray: #2C2C2E;
+  --white: #F9FAFB;
+  --darkGray: #242424;
+  --indigo: #5E5CE6;
+  --blue: #0A84FF;
+  --red: #FF453A;
+  --blackLow: #1C1C1E70;
+  --grayLow: #2C2C2E70;
+  --whiteLow: #F9FAFB70;
+  --darkGrayLow: #1F1F2070;
+  --indigoLow: #5E5CE670;
+  --blueLow: #0A84FF70;
+}
+
+
+.r_absolute{
+  position: absolute,
+}  
+//Corlors
+.r_bgBlack{
+ background-color: var(--black)
+}
+.r_bgGray{
+ background-color: var(--gray)
+}
+.r_bgDarkGray{
+ background-color: var(--darkGray)
+}
+.r_bgWhite{
+ background-color: var(--white)
+}
+.r_bgIndigo{
+ background-color: var(--indigo)
+}
+.r_bgBlue{
+ background-color: var(--blue)
+}
+.r_bgRed{
+ background-color: var(--red)
+}
+
+.r_textBlack{
+ color: var(--black)
+}
+.r_textGray{
+ color: var(--gray)
+}
+.r_textWhite{
+ color: var(--white)
+}
+.r_textIndigo{
+ color: var(--indigo)
+}
+.r_textBlue{
+ color: var(--blue)
+}
+.r_textRed{
+ color: var(--red)
+}
+
+
+// Fonts
+.r_fontXl{
+ font-weight: bold,
+}
+.r_fontM{
+ font-weight: 700,
+}
+.r_fontS{
+ font-weight: 300,
+}
+
+//Texto
+.r_textXXS{
+ font-size: 12px,
+}
+.r_textXS{
+ font-size: 14px,
+}
+.r_textS{
+ font-size: 16px,
+}
+.r_textM{
+ font-size: 18px,
+}
+.r_textXM{
+ font-size: 20px,
+}
+.r_textL{
+ font-size: 22px,  
+}
+.r_textXl{
+ font-size: 24px,  
+}
+.r_textXxl{
+ font-size: 26px,
+}
+.r_textXxxl{
+ font-size: 28px,
+}
+.r_textCenter{
+ text-align: center,
+}
+.r_textLeft{
+ text-align: left,
+}
+.r_textRight{
+ text-align: right,
+}
+
+// Flex
+.r_dFlex{
+ display: flex,
+}
+.r_flexRow{
+ flex-direction: row,
+}
+.r_flexColumn{
+ flex-direction: column,
+}
+.r_flex{
+ flex: 1,
+}
+
+
+// Posicionamiento
+.r_contentStart{
+ justify-content: flex-start,
+}
+.r_contentCenter{
+ justify-content: center,
+}
+.r_contentBetween{
+ justify-content: space-between,
+}
+.r_contentAround{
+ justify-content: space-around,
+}
+.r_contentEnd{
+ justify-content: flex-end,
+}
+.r_alignStart{
+ align-items: flex-start,
+}
+.r_alignEnd{
+ align-items: flex-end,
+}
+.r_alignCenter{
+ align-items: center,
+}
+
+// Forma
+.r_roundedS{
+ border-radius: 5px,
+}
+.r_roundedM{
+ border-radius: 12px,
+}
+.r_roundedXl{
+ border-radius: 20px,
+}
+.r_rounded{
+ border-radius: 900px,
+}
+
+.r_hScreen{
+ height: 100vh,
+}
+.r_wScreen{
+ width: 100vw,
+}
+.r_hFull{
+ height: 100%,
+}
+.r_wFull{
+ width: 100%,
+}
+
+
+.r_paddingXS{
+ padding: 5px,
+}
+.r_paddingS{
+ padding: 10px,
+}
+.r_paddingM{
+ padding: 12px,
+}
+.r_paddingl{
+ padding: 16px,
+}
+.r_paddingXl{
+ padding: 20px,
+}
+.r_paddingXXl{
+ padding: 25px,
+}
+
+/*
+.r_letterSpacingS{
+ letterSpacing: 0.7,
+}
+
+.r_letterSpacingM{
+ letterSpacing: 0.8,
+}
+.r_letterSpacingXL{
+ letterSpacing: 1,
+}
+
+// Tamaño
+
+.r_hScreen{
+ height: AppSizes.FullH,
+}
+.r_wScreen{
+ width: AppSizes.FullW,
+}
+.r_h50{
+ height: AppSizes.h50
+}
+.r_h25{
+ height: AppSizes.h25
+}
+.r_w50{
+ width: AppSizes.w50
+}
+.r_w25{
+ width: AppSizes.w25
+}
+.r_hFull{
+ height: "100%",
+}
+.r_wFull{
+ width: "100%",
+}
+.r_hHalf{
+ height: "50%",
+}
+.r_wHalf{
+ width: "50%",
+}
+
+.r_shadowS{
+ shadowColor: "#515151",
+ .r_shadowOffset{
+   width: 1,
+   height: 1.2,
+ }
+ shadowOpacity: 0.25,
+ shadowRadius: 4,
+ elevation: 3,
+}
+.r_shadowM{
+ shadowColor: "#515151",
+ .r_shadowOffset{
+   width: 2,
+   height: 3,
+ }
+ shadowOpacity: 0.25,
+ shadowRadius: 4,
+ elevation: 5,
+}
+.r_shadowXl{
+ shadowColor: "#515151",
+ .r_shadowOffset{
+   width: 3,
+   height: 8,
+ }
+ shadowOpacity: 0.25,
+ shadowRadius: 4,
+ elevation: 12.5,
+}
+
+// Spacio
+.r_marginXS{
+ margin: 5,
+}
+.r_marginS{
+ margin: 10,
+}
+.r_marginM{
+ margin: 15,
+}
+.r_marginXl{
+ margin: 20,
+}
+.r_marginXXl{
+ margin: 25,
+}
+
+.r_paddingXS{
+ padding: 5,
+}
+.r_paddingS{
+ padding: 10,
+}
+.r_paddingM{
+ padding: 12,
+}
+.r_paddingl{
+ padding: 16,
+}
+.r_paddingXl{
+ padding: 20,
+}
+.r_paddingXXl{
+ padding: 25,
+}
+
+.r_marginXSY{
+ marginVertical: 5,
+}
+.r_marginSY{
+ marginVertical: 10,
+}
+.r_marginMY{
+ marginVertical: 15,
+}
+.r_marginXlY{
+ marginVertical: 20,
+}
+.r_marginXxlY{
+ marginVertical: 25,
+}
+
+.r_paddingXSY{
+ paddingVertical: 5,
+}
+.r_paddingSY{
+ paddingVertical: 10,
+}
+.r_paddingMY{
+ paddingVertical: 15,
+}
+.r_paddingXlY{
+ paddingVertical: 20,
+}
+.r_paddingXxlY{
+ paddingVertical: 25,
+}
+
+.r_marginXSX{
+ marginHorizontal: 5,
+}
+.r_marginSX{
+ marginHorizontal: 10,
+}
+.r_marginMX{
+ marginHorizontal: 15,
+}
+.r_marginXlX{
+ marginHorizontal: 20,
+}
+.r_marginXxlX{
+ marginHorizontal: 25,
+}
+
+.r_paddingXSX{
+ paddingHorizontal: 5,
+}
+.r_paddingSX{
+ paddingHorizontal: 10,
+}
+.r_paddingMX{
+ paddingHorizontal: 15,
+}
+.r_paddingXlX{
+ paddingHorizontal: 20,
+}
+.r_paddingXxlX{
+ paddingHorizontal: 25,
+}
+
+.r_marginXSBot{
+ marginBottom: 5,
+}
+.r_marginSBot{
+ marginBottom: 10,
+}
+.r_marginMBot{
+ marginBottom: 15,
+}
+.r_marginXlBot{
+ marginBottom: 20,
+}
+.r_marginXxlBot{
+ marginBottom: 25,
+}
+
+.r_paddingXSBot{
+ paddingBottom: 5,
+}
+.r_paddingSBot{
+ paddingBottom: 10,
+}
+.r_paddingMBot{
+ paddingBottom: 15,
+}
+.r_paddingXlBot{
+ paddingBottom: 20,
+}
+.r_paddingXxlBot{
+ paddingBottom: 25,
+}
+
+.r_marginXSLe{
+ marginLeft: 5,
+}
+.r_marginSLe{
+ marginLeft: 10,
+}
+.r_marginMLe{
+ marginLeft: 15,
+}
+.r_marginXlLe{
+ marginLeft: 20,
+}
+.r_marginXxlLe{
+ marginLeft: 25,
+}
+
+.r_paddingXSLe{
+ paddingLeft: 5,
+}
+.r_paddingSLe{
+ paddingLeft: 10,
+}
+.r_paddingMLe{
+ paddingLeft: 15,
+}
+.r_paddingXlLe{
+ paddingLeft: 20,
+}
+.r_paddingXxlLe{
+ paddingLeft: 25,
+}
+
+
+.r_marginXSTop{
+ marginTop: 5,
+}
+.r_marginSTop{
+ marginTop: 10,
+}
+.r_marginMTop{
+ marginTop: 15,
+}
+.r_marginXlTop{
+ marginTop: 20,
+}
+.r_marginXxlTop{
+ marginTop: 25,
+}
+
+.r_paddingXSTop{
+ paddingTop: 5,
+}
+.r_paddingSTop{
+ paddingTop: 10,
+}
+.r_paddingMTop{
+ paddingTop: 15,
+}
+.r_paddingXlTop{
+ paddingTop: 20,
+}
+.r_paddingXxlTop{
+ paddingTop: 25,
+}
+
+.r_marginXSRi{
+ marginRight: 5,
+}
+.r_marginSRi{
+ marginRight: 10,
+}
+.r_marginMRi{
+ marginRight: 15,
+}
+.r_marginXlRi{
+ marginRight: 20,
+}
+.r_marginXxlRi{
+ marginRight: 25,
+}
+
+.r_paddingXSRi{
+ paddingRight: 5,
+}
+.r_paddingSRi{
+ paddingRight: 10,
+}
+.r_paddingMRi{
+ paddingRight: 15,
+}
+.r_paddingXlRi{
+ paddingRight: 20,
+}
+.r_paddingXxlRi{
+ paddingRight: 25,
+}
+
+// Borde
+.r_borderS{
+ borderWidth: 1,
+}
+.r_borderM{
+ borderWidth: 1.5,
+}
+.r_borderXl{
+ borderWidth: 2,
+}
+*/
