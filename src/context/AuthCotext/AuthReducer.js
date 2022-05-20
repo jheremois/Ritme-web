@@ -1,7 +1,3 @@
-import { useReducer } from "react";
-
-//const [state, dispatch] = useReducer(reducer, initialArg, init);
-
 
 const types ={
     authLoged: 'auth_loged',
@@ -10,7 +6,6 @@ const types ={
 
 const initialUser = {
     userToken: "",
-    logged: true
 }
 
 const AuthReducer = (state, action)=> {
@@ -18,12 +13,10 @@ const AuthReducer = (state, action)=> {
         case types.authLogout:
             return {
                 userToken: "",
-                logged: false
             }
         case types.authLoged:
             return {
                 userToken: action.token,
-                logged: true
             }
         default:
             return state

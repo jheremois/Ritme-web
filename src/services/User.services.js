@@ -8,7 +8,7 @@ export const getCurrentUser = async ()=>{
         if(storedJwt != null){
             return users.get("/user", {
                 headers: {
-                    "user_token": storedJwt.userToken
+                    "user_token": JSON.parse(localStorage.getItem('ritme-user')).userToken
                 }
             })
         }else{

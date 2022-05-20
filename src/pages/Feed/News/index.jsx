@@ -15,7 +15,9 @@ function News() {
             <Post/>
             <Post/>
           </div>
-          <SideNav/>
+          <div className="leftspacer">
+
+          </div>
         </div>
     </>
   )

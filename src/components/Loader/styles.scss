@@ -1,0 +1,24 @@
+.loadHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.loader{
+    animation: spin 1.9s linear infinite;
+    width: 5.5rem;
+    height: 5.5rem;
+    border: solid 0.6rem white;
+    border-radius: 100vw;
+    border-top: solid 0.6rem transparent;
+    border-bottom: solid 0.6rem transparent;
+}

@@ -1,34 +1,78 @@
 .nav{
-    height: 100vh;
     width: 20vw !important;
+    border-right: solid 2px #ffffff39;
 }
 aside{
-    width: 16vw !important;
+    width: 19.9vw !important;
+    top: 0px;
+    height: 100vh;
     text-align: start;
+    justify-content: space-between;
     position: fixed;
-    height: 100%;
-    padding: 10px 20px;
+    padding: 5rem 0px 0px;
+    color: var(--whiteLow);
     .option{
+        gap: 10px;
         padding: 23px 20px;
-        color: whitesmoke;
-        font-weight: 600;
-        font-size: 18px;
+        .optionText{
+            font-weight: 500;
+            font-size: 1.7rem;
+        }
+        .optionIcon{
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
     }
     .option:hover{
         color: #f5f5f5dc;
     }
+
+    .options{
+
+        .userOptions{
+            border-top: solid 2px #ffffff39;
+            height: 4.2rem;
+            padding: 0px 20px;
+            display: flex;
+            align-items: center;
+            span{
+                width: 100%;
+                .userPres{
+                    font-size: 1rem;
+                    font-weight: 500;
+                    gap: 10px;
+                }
+                .userPic{
+                    
+                }
+                .userName{
+                    
+                }
+                .userMenuBot{
+                    top: -8rem;
+                    left: -5px;
+                    text-align: center;
+                }
+                .openMenuBot{
+                  outline: none;
+                }
+            }
+        }
+    }
+
 }
 
 @media screen and (max-width: 1024px){
     .nav{
-        width: 6rem;
+        width: 19rem !important;
+        
     }
     aside{
         text-align: start;
         position: fixed;
-        width: 6rem;
+        width: 19rem !important;
         height: 100%;
-        padding: 10px 0px;
+        padding: 5rem 0px 0px;
         .option{
             padding: 23px 20px;
             color: whitesmoke;

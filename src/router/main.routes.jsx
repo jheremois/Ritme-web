@@ -3,85 +3,80 @@ import { Redirect } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
+  Route
 } from "react-router-dom";
-import Welcome from "../pages/welcome";
 import { AuthRoutes } from "./auth.routes";
-import News from "../pages/Feed/News";
-import AuthContext from "../context/AuthProvider";
+import AuthContext from "../context/AuthCotext/AuthProvider";
 import { getCurrentUser } from "../services/User.services";
-import { types } from "../context/AuthReducer";
 import { AppRoutes } from "./app.routes";
+import Loader from "../components/Loader";
+import { types } from "../context/AuthCotext/AuthReducer"
 
 export default function MainRouter() {
 
   const [authState, dispatch] = useContext(AuthContext)
-
-  //const {userToken} = authState
+  
+  const [authed, setAuthed] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    //console.log("El famoso reducer: ", authState);
-    getCurrentUser().then((res)=>{
-      //setAuth({userToken: localStorage.getItem('ritme-user')})
-    }).catch((err)=>{
-      //setAuth({userToken: ""})
-      console.log(err.response.data.errMessage)
-    }).finally(()=>{
-      //console.log(auth);
-    })
-
-
+    getCurrentUser(JSON.parse(localStorage.getItem('ritme-user')).userToken).then((res)=>{
+        console.log("actual user: ", res);
+        setAuthed(true)
+      }).catch((err)=>{
+        console.log("no hay user: ", JSON.parse(localStorage.getItem('ritme-user')).userToken);
+        setAuthed(false)
+        console.log("fallo: ", err.response.data)
+      }).finally(()=>{
+        setLoading(false)
+      })
   }, [])
 
   return (
+    loading
+    ?
+      <>
+        <Loader/>
+      </>
+    :
     <Router>
-      <h1
-        className="text-white"
-      >
-        
-      </h1>
-      <div>
-        <Switch>
-          <Route
-            path="/rt"
-          >
-            {
-              !authState.logged
-              ?
-                <AuthRoutes />
-              :
-                <Redirect to={'/'}/>
-            }
-          </Route>
+      <Switch>
+        <Route
+          path="/rt"
+        >
+          {
+            !authed
+            ?
+              <AuthRoutes />
+            :
+              <Redirect to={'/'}/>
+          }
+        </Route>
 
-          <Route
-            path="/"
-          >
-            {
-              authState.logged
-              ?
-                <AppRoutes/>
-              :
-                <Redirect to={'/rt'}/>
-            }
-          </Route>
+        <Route
+          path="/"
+        >
+          {
+            authed
+            ?
+              <AppRoutes/>
+            :
+              <Redirect to={'/rt'}/>
+          }
+        </Route>
 
-          <Route
-            path="/*"
-          >
-            {
-              !authState.logged
-              ?
-                <Redirect to={'/'}/>
-              :
-                <Redirect to={'/rt/login'}/>
-            }
-          </Route>
-        </Switch>
-      </div>
+        <Route
+          path="/*"
+        >
+          {
+            !authed
+            ?
+              <Redirect to={'/'}/>
+            :
+              <Redirect to={'/rt/login'}/>
+          }
+        </Route>
+      </Switch>
     </Router>
   );
 }

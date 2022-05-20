@@ -7,8 +7,8 @@ import { loginUser } from '../../../services/Auth.services'
 import { getCurrentUser } from '../../../services/User.services'
 import { Toaster } from 'react-hot-toast';
 import { notify } from '../../../helpers/const'
-import AuthContext from '../../../context/AuthProvider'
-import { types } from '../../../context/AuthReducer'
+import AuthContext from '../../../context/AuthCotext/AuthProvider'
+import { types } from '../../../context/AuthCotext/AuthReducer'
 
 const Login = ()=> {
   
@@ -37,8 +37,6 @@ const Login = ()=> {
     setInValidForm({password: form.password.length <= 5, email: !form.email.match(emailRegex)})
     loginUser(form).then( async (res)=>{
       try {
-        //localStorage.setItem('ritme-user', res.data.data.user_token);
-        //notify("s", "Welcome")
         const action = {
           type: types.authLoged,
           token: res.data.data.user_token
@@ -46,9 +44,8 @@ const Login = ()=> {
 
         dispatch(action)
 
-        history.replace("/")
+        window.location.reload()
 
-        await setLoading(false)
       } catch (e) {
         await setLoading(false)
         notify("e", "Error trying to authenticate")

@@ -1,8 +1,21 @@
 #appDash{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: var(--black);
 }
 .appFeed{
-    width: 83%;
+    
+}
+
+.leftspacer{
+    width: 20vw !important;
+    border-left: solid 2px #ffffff39;
+}
+
+
+@media screen and (max-width: 1024px){
+    .leftspacer{
+        width: 19rem !important;
+        
+    }
 }

@@ -4,7 +4,7 @@ import AuthReducer, {initialUser} from "./AuthReducer";
 const AuthContext = createContext({});
 
 const init = ()=>{
-    return JSON.parse(localStorage.getItem('ritme-user')) || {userToken: "", logged: false}
+    return JSON.parse(localStorage.getItem('ritme-user')) || {userToken: ""}
 }
 
 export const AuthProvider = ({ children }) => {
