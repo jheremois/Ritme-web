@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import AuthInput from '../../../components/AuthInput'
 import { emailRegex } from '../../../helpers/const'
 import { RegisterUser } from '../../../services/Auth.services'
 import AuthAlert from '../../../components/AuthAlert'
+import { ReactComponent as LOGO } from '../../../assets/LOGO.svg'
 
 const Register = ()=> {
   
@@ -22,17 +24,59 @@ const Register = ()=> {
   })
   const [loading, setLoading] = useState(false)
 
+  const [open, setOpen] = useState(false)
+
   const changeForm = (e, field) => {
     setForm({ ...form, [field]: e });
   };
 
+  const [alertBody, setAlertBody] = useState({
+    title: "",
+    body: "",
+    color: "gray",
+    button: ""
+  })
+
+  const history = useHistory()
+
   const sendForm = ()=>{
-    console.log(form);
     setLoading(true)
+
     RegisterUser(form).then((res)=>{
       console.log(res);
-      setLoading(false)
-    }).catch(()=>{
+      setAlertBody(
+        {
+          title: `Welcome ${form.user_name}`,
+          body: "Everything's ready! now you can go to login to dive into Ritme",
+          color: "gray",
+          button:
+            <button
+              type="button"
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-500 text-base font-medium text-white hover:bg-indigo-700  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              onClick={() => history.push('login')}
+            >
+              Go to Login
+            </button>
+        }
+      )
+    }).catch((err)=>{
+      setAlertBody(
+        {
+          title: "Ups!",
+          body: err.response.data.errMessage,
+          color: "red",
+          button:
+            <button
+              type="button"
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700  sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              onClick={() => setOpen(false)}
+            >
+              Try again
+            </button>
+        }
+      )
+    }).finally(()=>{
+      setOpen(true)
       setLoading(false)
     })
   }
@@ -43,14 +87,27 @@ const Register = ()=> {
 
   return (
     <>
-      <AuthAlert></AuthAlert>
+      <AuthAlert 
+        isOpen={open} 
+        setOpen={setOpen}
+        title={alertBody.title}
+        body={alertBody.body}
+        color={alertBody.color}
+      >
+        {alertBody.button}
+        <button
+          type="button"
+          className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          onClick={() => setOpen(false)}
+        >
+          Cancel
+        </button>
+      </AuthAlert>
       <div className="r_hScreen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 r_bgGray">
         <div className="fadeInAni max-w-md w-full space-y-8 r_bgBlack r_paddingXl rounded-lg border-2 border-gray-600">
           <div>
-            <img
+            <LOGO
               className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
             />
           </div>
           <div className="mt-8 space-y-6">
@@ -79,7 +136,7 @@ const Register = ()=> {
                   label="Email"
                   type="e-mail"
                   value={form.email}
-                  validator={inValidForm.password}
+                  validator={inValidForm.email}
                   errMsg={"Invalid email"}
                   onChange={(e)=> changeForm(e.target.value, 'email')}
                   placeholder="Email"
@@ -101,7 +158,7 @@ const Register = ()=> {
                 type="text"
                 value={form.rPassword}
                 validator={inValidForm.rPassword}
-                errMsg={"Invalid password (password must have atleast 5 characters)"}
+                errMsg={"Passwords does not match"}
                 onChange={(e)=> changeForm(e.target.value, 'rPassword')}
                 placeholder="Repeat password"
               />
@@ -112,7 +169,7 @@ const Register = ()=> {
                     ?
                     <button
                       onClick={()=> {
-                        let condition = {user_name: form.user_name.length <= 2, password: form.password.length <= 5, email: !form.email.match(emailRegex)}
+                        let condition = {user_name: form.user_name.length <= 2, password: form.password.length <= 5, email: !form.email.match(emailRegex), rPassword: form.rPassword !== form.password || form.password.length <= 5}
                         form.password.length <= 5 || !form.email.match(emailRegex)
                         ?
                         setInValidForm(condition)

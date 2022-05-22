@@ -29,21 +29,21 @@ export default function MainRouter() {
 
   useEffect(()=>{
 
+    var userJWT = JSON.parse(localStorage.getItem('ritme-user'))
+
     LoadDispatch(LoadAction)
-    getCurrentUser(JSON.parse(localStorage.getItem('ritme-user')).userToken).then((res)=>{
+    getCurrentUser(userJWT?userJWT.userToken:'').then((res)=>{
       console.log("actual user: ", res);
       dispatch({
         type: types.authLoged,
-        token: JSON.parse(localStorage.getItem('ritme-user')).userToken,
+        token: userJWT.userToken,
         isAuthed: true
       })
     }).catch((err)=>{      
-      console.log("fallo: ", err.response.data)
       dispatch({
         type: types.authLogout,
-        token: '',
-        isAuthed: false
       })
+      localStorage.removeItem('ritme-user')
     }).finally(()=>{
       LoadDispatch(StopLoadAction)
     })

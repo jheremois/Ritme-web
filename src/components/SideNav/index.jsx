@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './styles.scss'
 
 
@@ -8,6 +8,7 @@ import './styles.scss'
 import AuthContext from '../../context/AuthCotext/AuthProvider'
 import LoadContext from '../../context/LoadContext/LoadContext'
 import { types } from '../../context/AuthCotext/AuthReducer'
+import { getCurrentUser } from "../../services/User.services"
 
 
 function classNames(...classes) {
@@ -17,14 +18,26 @@ function classNames(...classes) {
 function SideNav() {
 
     const [authState, dispatch] = useContext(AuthContext)
-    //
-    //const [authStates, dispatchs] = useContext(LoadContext)
 
     const navigation = [
         { name: 'Home', icon: 'home', href: '#', current: true },
         { name: 'Trending', icon: 'trending_up', href: '#', current: false },
         { name: 'Profile', icon: 'person', href: '#', current: false },
     ]
+
+    const logOut = ()=>{
+        dispatch({
+            type: types.authLogout
+        })
+        
+        localStorage.removeItem('ritme-user')
+    }
+
+    useEffect(()=>{
+        getCurrentUser().then((res)=>{
+            console.log("mi user: ", res);
+        })
+    })
 
     return(
         <>
@@ -94,12 +107,7 @@ function SideNav() {
                                         <Menu.Item>
                                             {({ active }) => (
                                             <button
-                                                onClick={()=>{
-                                                dispatch({
-                                                    type: types.authLogout
-                                                })
-                                                //window.location.reload()
-                                                }}
+                                                onClick={()=>{logOut()}}
                                                 className={classNames(active ? 'bg-gray-100' : '', 'w-full block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Sign out

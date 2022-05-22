@@ -4,7 +4,6 @@ const storedJwt = JSON.parse(localStorage.getItem('ritme-user'));
 
 export const getCurrentUser = async ()=>{
     try {
-        //const jsonValue = await AsyncStorage.getItem('User_auth_token')
         if(storedJwt != null){
             return users.get("/user", {
                 headers: {
@@ -35,6 +34,7 @@ export const updateMe = async (data)=>{
     }
   
 }
+
 /*
 export const getUsers = async ()=>{
   try {

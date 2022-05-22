@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import AuthInput from '../../../components/AuthInput'
 import { emailRegex } from '../../../helpers/const'
 import { loginUser } from '../../../services/Auth.services'
-import { getCurrentUser } from '../../../services/User.services'
 import { Toaster } from 'react-hot-toast';
 import { notify } from '../../../helpers/const'
 import AuthContext from '../../../context/AuthCotext/AuthProvider'
 import { types } from '../../../context/AuthCotext/AuthReducer'
 import LoadContext from '../../../context/LoadContext/LoadContext'
 import { typesLoad } from '../../../context/LoadContext/LoadReducer'
+import { ReactComponent as LOGO } from '../../../assets/LOGO.svg'
 
 const Login = ()=> {
   
@@ -29,8 +28,6 @@ const Login = ()=> {
   const [authState, dispatch] = useContext(AuthContext)
 
   const [loadState, LoadDispatch] = useContext(LoadContext)
-
-  const history = useHistory();
 
   const changeForm = (e, field) => {
     setForm({ ...form, [field]: e });
@@ -55,13 +52,10 @@ const Login = ()=> {
           isAuthed: true
         }
 
-        localStorage.setItem('ritme-user', JSON.stringify({userToken: res.data.data.user_token}))
         LoadDispatch(LoadAction)
         dispatch(action)
 
-        setTimeout(() => {
-          LoadDispatch(StopLoadAction)
-        }, 2000);
+        localStorage.setItem('ritme-user', JSON.stringify({userToken: res.data.data.user_token}))
 
       } catch (e) {
         await setLoading(false)
@@ -71,27 +65,11 @@ const Login = ()=> {
         notify("e", err.response.data.errMessage)
         await setLoading(false)
     }).finally(()=>{
-      //LoadDispatch(StopLoadAction)
+      LoadDispatch(StopLoadAction)
     })
   }
 
   useEffect(()=>{
-
-    const users = [1,2,3,4]
-
-    /*
-      Aqui otro ejemplo en el cual la fucnion que es un parametro
-      en el deduce esta creada de manada indepentdiente
-    */
-    var valor = 6
-    const reducer = (acumulado, valorN)=>{
-      return acumulado + valorN
-    }
-
-    const reduceUsers = users.reduce(reducer, valor)
-
-    console.log('reduce aplicado a "users": ', reduceUsers);
-    // Output: 16
 
   }, [])
 
@@ -101,10 +79,8 @@ const Login = ()=> {
       <div className="r_hScreen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 r_bgGray">
         <div className="fadeInAni max-w-md w-full space-y-8 r_bgBlack r_paddingXl rounded-lg border-2 border-gray-600">
           <div>
-            <img
+            <LOGO
               className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
             />
           </div>
           <div className="mt-8 space-y-6">
