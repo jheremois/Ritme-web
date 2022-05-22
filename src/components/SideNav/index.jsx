@@ -17,6 +17,7 @@ function classNames(...classes) {
 function SideNav() {
 
     const [authState, dispatch] = useContext(AuthContext)
+    //
     //const [authStates, dispatchs] = useContext(LoadContext)
 
     const navigation = [
@@ -97,9 +98,8 @@ function SideNav() {
                                                 dispatch({
                                                     type: types.authLogout
                                                 })
-                                                window.location.reload()
+                                                //window.location.reload()
                                                 }}
-                                                href="#"
                                                 className={classNames(active ? 'bg-gray-100' : '', 'w-full block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Sign out

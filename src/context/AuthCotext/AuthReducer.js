@@ -6,6 +6,7 @@ const types ={
 
 const initialUser = {
     userToken: "",
+    isAuthed: false
 }
 
 const AuthReducer = (state, action)=> {
@@ -13,10 +14,12 @@ const AuthReducer = (state, action)=> {
         case types.authLogout:
             return {
                 userToken: "",
+                isAuthed: false
             }
         case types.authLoged:
             return {
                 userToken: action.token,
+                isAuthed: action.isAuthed
             }
         default:
             return state

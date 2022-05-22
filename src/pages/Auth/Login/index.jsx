@@ -9,6 +9,8 @@ import { Toaster } from 'react-hot-toast';
 import { notify } from '../../../helpers/const'
 import AuthContext from '../../../context/AuthCotext/AuthProvider'
 import { types } from '../../../context/AuthCotext/AuthReducer'
+import LoadContext from '../../../context/LoadContext/LoadContext'
+import { typesLoad } from '../../../context/LoadContext/LoadReducer'
 
 const Login = ()=> {
   
@@ -26,25 +28,40 @@ const Login = ()=> {
 
   const [authState, dispatch] = useContext(AuthContext)
 
+  const [loadState, LoadDispatch] = useContext(LoadContext)
+
   const history = useHistory();
 
   const changeForm = (e, field) => {
     setForm({ ...form, [field]: e });
   };
+
+  const LoadAction = {
+    type: typesLoad.loading
+  }
+
+  const StopLoadAction = {
+    type: typesLoad.notLoading
+  }
   
   const logUser = ()=>{
     setLoading(true)
     setInValidForm({password: form.password.length <= 5, email: !form.email.match(emailRegex)})
     loginUser(form).then( async (res)=>{
       try {
-        const action = {
+        let action = {
           type: types.authLoged,
-          token: res.data.data.user_token
+          token: res.data.data.user_token,
+          isAuthed: true
         }
 
+        localStorage.setItem('ritme-user', JSON.stringify({userToken: res.data.data.user_token}))
+        LoadDispatch(LoadAction)
         dispatch(action)
 
-        window.location.reload()
+        setTimeout(() => {
+          LoadDispatch(StopLoadAction)
+        }, 2000);
 
       } catch (e) {
         await setLoading(false)
@@ -53,9 +70,11 @@ const Login = ()=> {
     }).catch(async (err)=>{
         notify("e", err.response.data.errMessage)
         await setLoading(false)
+    }).finally(()=>{
+      //LoadDispatch(StopLoadAction)
     })
   }
-  
+
   useEffect(()=>{
 
     const users = [1,2,3,4]
