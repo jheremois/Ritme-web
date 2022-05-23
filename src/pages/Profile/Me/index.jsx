@@ -1,11 +1,54 @@
-import react, {useContext, useState} from 'react'
+import react, {useContext, useEffect, useState} from 'react'
 import Post from '../../../components/Post'
 import AuthContext from '../../../context/AuthCotext/AuthProvider'
+import { getMyFeed } from '../../../services/Posts.services'
 import './styles.scss'
+import LazyLoad from 'react-lazyload';
+import Loader from '../../../components/Loader'
 
 const Me = ()=>{
 
     const [authState, dispatch] = useContext(AuthContext)
+    const [posts, setPosts] = useState(
+        [
+            {
+                down_votes: 0,
+                i_voted: 0,
+                post_description: "Tpa",
+                post_id: 65,
+                post_image: "https://storage.googleapis.com/ritme-posts/3%2F9Lmrziq1SmImyeQQMy.png",
+                post_tag: "Sports",
+                profile_pic: "https://storage.googleapis.com/ritme-profiles/%2FQX%2BkL52G0pKOlmbPIGX.png",
+                up_votes: 0,
+                upload_time: "2022-05-23T00:34:10.000Z",
+                user_id: 49,
+                user_name: "dalia"
+            },
+        ]
+    )
+
+    const [loading, setLoading]  = useState(true)
+
+    const getMyPosts = ()=>{
+        setLoading(true)
+        getMyFeed(authState.userToken).then((res)=>{
+            setPosts(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        }).finally(()=>{
+            setLoading(false)
+        })
+    }
+
+    useEffect(()=>{
+        getMyPosts()
+    }, [])
+
+    if(loading){
+        return(
+            <Loader/>
+        )
+    }
 
     return(
         <>
@@ -30,10 +73,31 @@ const Me = ()=>{
                 </div>
             </div>
             <div className="miFeed">
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                {
+                    posts.map((post, index)=>{
+                        return(
+                            <LazyLoad
+                                key={post.post_id}
+                                height={300} offset={100}
+                            >
+                                <Post
+                                    key={post.post_id}
+                                    down_votes={post.down_votes}
+                                    i_voted={post.i_voted}
+                                    post_description={post.post_description}
+                                    post_id={post.post_id}
+                                    post_image={post.post_image}
+                                    post_tag={post.post_tag}
+                                    profile_pic={post.profile_pic}
+                                    up_votes={post.up_votes}
+                                    upload_time={post.upload_time}
+                                    user_id={post.user_id}
+                                    user_name={post.user_name}
+                                />
+                            </LazyLoad>
+                        )
+                    })
+                }
             </div>
         </>
     )

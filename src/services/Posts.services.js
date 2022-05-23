@@ -1,9 +1,25 @@
 import { posts } from "./services";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { FormPostType } from "@src/shared/interfaces/posts.type";
+
+export const getMyFeed = async (userToken) => {
+
+    return posts.get("/profile", {
+        headers: {
+          "user_token": userToken
+        }
+    })
+}
+
+export const getFeed = async (userToken) => {
+
+    return posts.get(`/feed`, {
+        headers: {
+            "user_token": userToken
+        }
+    })
+}
 
 // Api v2:
-
+/*
 export const getFeed = async () => {
     const jsonValue = await AsyncStorage.getItem('user_data')
 
@@ -14,15 +30,7 @@ export const getFeed = async () => {
     })
 }
 
-export const getMyFeed = async () => {
-    const jsonValue = await AsyncStorage.getItem('user_data')
 
-    return posts.get("/profile", {
-        headers: {
-          "user_token": JSON.parse(jsonValue).user_token
-        }
-    })
-}
 
 export const getUserFeed = async (id) => {
     const jsonValue = await AsyncStorage.getItem('user_data')
@@ -84,3 +92,4 @@ export const sendVote = async (post_id, vote_type) => {
         }
     })
 }
+*/

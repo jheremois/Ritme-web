@@ -2,34 +2,51 @@ import { useState, useEffect } from "react";
 import './styles.scss'
 import {ReactComponent as ReactLogo} from '../../assets/vote_icon.svg';
 
-function Post() {
+function Post(
+{
+    down_votes,
+    i_voted,
+    post_description,
+    post_id,
+    post_image,
+    post_tag,
+    profile_pic,
+    up_votes,
+    upload_time,
+    user_id,
+    user_name,
+}
+) {
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
-            <div className="cardHeader flex px-5 py-5">
-                {/* <img className="r_rounded porfileImg w-12 h-12" src="https://storage.googleapis.com/ritme-posts/jheremois-ig-pic.jpg" alt="" /> */}
-                <img className="r_rounded porfileImg w-12 h-12" src="https://storage.googleapis.com/ritme-profiles/3urktmhETseYCIgCQqqr.png" alt="" />
+            <div className="cardHeader flex px-5 pt-5">
+                <img className="r_rounded porfileImg w-12 h-12" src={profile_pic} alt={user_name} />
                 <div className="postInfo px-3">
                     <div className="flex text-white">
                         <h4 className="text-white font-semibold">
-                            Jheremy Castro
+                            {user_name}
                         </h4>
                         <p className="mx-1 font-bold">
                             ◦
                         </p>
                         <p className="text-gray-400">
-                            12 hours ago
+                            {upload_time}
                         </p>
                     </div>
                     <div className="tag flex my-2">
                         <div className="postTag border bg-gray-600 w-auto r_rounded text-white px-3">
-                            Ciencia
+                            {post_tag}
                         </div>
                     </div>
                 </div>
             </div>
+            <div className="postDescription pb-2 mx-3">
+                <p className="text-gray-100 w-full flex">
+                    {post_description}
+                </p>
+            </div>
             <div className="cardImg">
-                <img className="w-full" src="https://storage.googleapis.com/ritme-profiles/3urktmhETseYCIgCQqqr.png" alt="" />
-                {/* <img className="w-full" src="https://storage.googleapis.com/ritme-posts/jheremois-ig-pic.jpg" alt="" /> */}
+                <img className="w-full" src={post_image} alt={user_name + " on " + post_tag} />
             </div>
             <div className="cardFooter">
                 <button className="upvote">
