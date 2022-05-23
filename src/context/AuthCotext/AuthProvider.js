@@ -5,7 +5,7 @@ import AuthReducer, {initialUser} from "./AuthReducer";
 const AuthContext = createContext({});
 
 const init = ()=>{
-    return {userToken: "", isAuthed: false}
+    return {userToken: "", isAuthed: false, user: {}}
 }
 
 export const AuthProvider = ({ children }) => {

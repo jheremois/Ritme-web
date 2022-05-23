@@ -9,6 +9,7 @@ import AuthContext from '../../context/AuthCotext/AuthProvider'
 import LoadContext from '../../context/LoadContext/LoadContext'
 import { types } from '../../context/AuthCotext/AuthReducer'
 import { getCurrentUser } from "../../services/User.services"
+import { Link } from "react-router-dom"
 
 
 function classNames(...classes) {
@@ -20,9 +21,9 @@ function SideNav() {
     const [authState, dispatch] = useContext(AuthContext)
 
     const navigation = [
-        { name: 'Home', icon: 'home', href: '#', current: true },
-        { name: 'Trending', icon: 'trending_up', href: '#', current: false },
-        { name: 'Profile', icon: 'person', href: '#', current: false },
+        { name: 'Home', icon: 'home', link: '/', current: true },
+        { name: 'Trending', icon: 'trending_up', link: '/trending', current: false },
+        { name: 'Profile', icon: 'person', link: '/me', current: false },
     ]
 
     const logOut = ()=>{
@@ -33,11 +34,7 @@ function SideNav() {
         localStorage.removeItem('ritme-user')
     }
 
-    useEffect(()=>{
-        getCurrentUser().then((res)=>{
-            console.log("mi user: ", res);
-        })
-    })
+    useEffect(()=>{})
 
     return(
         <>
@@ -46,14 +43,14 @@ function SideNav() {
                     <nav className="r_flexColumn r_dFlex">
                         {
                             navigation.map((res)=>(
-                                <a href="/" className="option items-center flex">
-                                    <span class="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
+                                <Link to={res.link} className="option items-center flex">
+                                    <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
                                         {res.icon}
                                     </span>
                                     <h3 className="optionText">
                                         {res.name}
                                     </h3>
-                                </a>
+                                </Link>
                             ))
                         }
                     </nav>
@@ -61,15 +58,15 @@ function SideNav() {
                         <div className="userOptions">
                             <span className="r_dFlex items-center text-gray-100 justify-between">
                                 <div className="userPres r_dFlex items-center">
-                                    <img className="userPic r_rounded w-9" src="https://storage.googleapis.com/ritme-posts/jheremois-ig-pic.jpg" alt="" />
+                                    <img className="userPic r_rounded w-9" src={authState.user.profile_pic} alt={authState.user.user_name} />
                                     <div className="userName">
-                                        Jheremois
+                                        {authState.user.user_name}
                                     </div>
                                 </div>
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
                                         <Menu.Button className="openMenuBot w-10 h-5 justify-center items-center flex">
-                                            <span class="material-symbols-outlined w-10 text-4xl">
+                                            <span className="material-symbols-outlined w-10 text-4xl">
                                                 more_horiz
                                             </span>
                                         </Menu.Button>

@@ -49,7 +49,8 @@ const Login = ()=> {
         let action = {
           type: types.authLoged,
           token: res.data.data.user_token,
-          isAuthed: true
+          isAuthed: true,
+          user: res.data.data.user
         }
 
         LoadDispatch(LoadAction)

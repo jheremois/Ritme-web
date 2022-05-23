@@ -64,13 +64,13 @@ aside{
 
 @media screen and (max-width: 1024px){
     .nav{
-        width: 19rem !important;
-        
+        width: 10vw !important;
     }
     aside{
+        overflow: hidden;
         text-align: start;
         position: fixed;
-        width: 19rem !important;
+        width: 10vw !important;
         height: 100%;
         padding: 5rem 0px 0px;
         .option{

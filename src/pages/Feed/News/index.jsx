@@ -6,19 +6,10 @@ import './styles.scss'
 function News() {
   return (
     <>
-        <Header></Header>
-        <div id="appDash">
-          <SideNav/>
-          <div className="appFeed">
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-          </div>
-          <div className="leftspacer">
-
-          </div>
-        </div>
+      <Post/>
+      <Post/>
+      <Post/>
+      <Post/>
     </>
   )
 }

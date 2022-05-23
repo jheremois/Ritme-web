@@ -1,0 +1,28 @@
+.profile{
+    border-bottom: solid 2px #ffffff39;;
+    padding: 3rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    .userInfo{
+        img{
+            width: 9rem;
+            height: 9rem;
+        }
+        .userMainInfo{
+            text-align: start;
+            padding: 1rem;        
+            h3{
+                font-size: 2rem;
+                font-weight: 600;
+            }
+            p{
+                font-size: 1rem;
+            }
+        }
+    }
+    .editProfile{
+        padding: 5px 20px;
+        border-radius: 5px;
+        border: solid 3px #d3d3d34c;
+    }
+}

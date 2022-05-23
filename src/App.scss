@@ -8,6 +8,31 @@
   pointer-events: none;
 }
 
+#appDash{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--black);
+}
+
+.appContent{
+  width: 60vw;
+}
+.appFeed{
+  
+}
+
+.leftspacer{
+  width: 20vw !important;
+  border-left: solid 2px #ffffff39;
+}
+
+
+@media screen and (max-width: 1024px){
+  .leftspacer{
+    width: 10vw !important;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
