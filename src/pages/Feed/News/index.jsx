@@ -5,6 +5,7 @@ import { getFeed } from '../../../services/Posts.services'
 import './styles.scss'
 import LazyLoad from 'react-lazyload';
 import Loader from '../../../components/Loader'
+import { Link } from 'react-router-dom'
 
 function News() {
   
@@ -45,17 +46,17 @@ function News() {
                   height={300} offset={100}
                 >
                   <Post
-                      down_votes={post.down_votes}
-                      i_voted={post.i_voted}
-                      post_description={post.post_description}
-                      post_id={post.post_id}
-                      post_image={post.post_image}
-                      post_tag={post.post_tag}
-                      profile_pic={post.profile_pic}
-                      up_votes={post.up_votes}
-                      upload_time={post.upload_time}
-                      user_id={post.user_id}
-                      user_name={post.user_name}
+                    down_votes={post.down_votes}
+                    i_voted={post.i_voted}
+                    post_description={post.post_description}
+                    post_id={post.post_id}
+                    post_image={post.post_image}
+                    post_tag={post.post_tag}
+                    profile_pic={post.profile_pic}
+                    up_votes={post.up_votes}
+                    upload_time={post.upload_time}
+                    user_id={post.user_id}
+                    user_name={post.user_name}
                   />
                 </LazyLoad>
               )

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import './styles.scss'
 import {ReactComponent as ReactLogo} from '../../assets/vote_icon.svg';
+import { Link } from "react-router-dom";
 
 function Post(
 {
@@ -20,14 +21,18 @@ function Post(
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
             <div className="cardHeader flex px-5 pt-5">
-                <img className="r_rounded porfileImg w-12 h-12" src={profile_pic} alt={user_name} />
+                <Link to={''} className="option items-center flex">
+                    <img className="r_rounded porfileImg w-12 h-12" src={profile_pic} alt={user_name} />
+                </Link>
                 <div className="postInfo px-3">
                     <div className="flex text-white">
-                        <h4 className="text-white font-semibold">
-                            {user_name}
-                        </h4>
+                        <Link to={''} className="option items-center flex">
+                            <h4 className="text-white font-semibold">
+                                {user_name}
+                            </h4>
+                        </Link>
                         <p className="mx-1 font-bold">
-                            ◦
+                            ◦ {post_id}
                         </p>
                         <p className="text-gray-400">
                             {upload_time}
@@ -46,7 +51,9 @@ function Post(
                 </p>
             </div>
             <div className="cardImg">
-                <img className="w-full" src={post_image} alt={user_name + " on " + post_tag} />
+                <Link to={`/post/${post_id}`} className="option items-center flex">
+                    <img className="w-full" src={post_image} alt={user_name + " on " + post_tag} />
+                </Link>
             </div>
             <div className="cardFooter">
                 <button className="upvote">

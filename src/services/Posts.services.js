@@ -18,6 +18,15 @@ export const getFeed = async (userToken) => {
     })
 }
 
+export const getPost = async (userToken, id) => {
+
+    return posts.get(`/post/${id}`, {
+        headers: {
+            "user_token": userToken
+        }
+    })
+}
+
 // Api v2:
 /*
 export const getFeed = async () => {
