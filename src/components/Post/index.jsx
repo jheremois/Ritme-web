@@ -32,7 +32,7 @@ function Post(
                             </h4>
                         </Link>
                         <p className="mx-1 font-bold">
-                            ◦ {post_id}
+                            ◦
                         </p>
                         <p className="text-gray-400">
                             {upload_time}

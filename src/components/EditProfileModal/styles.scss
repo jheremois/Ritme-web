@@ -1,0 +1,25 @@
+.ModalHolder{
+    z-index: 99;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: #a4a4a468;
+    .modal{
+        min-width: 40vw;
+        padding: 10px 0px;
+        input{
+            width: 100%;
+        }
+        .editProliefrom{
+
+        }
+        textarea{
+            resize: none;
+        }
+    }
+}

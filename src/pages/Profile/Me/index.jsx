@@ -5,6 +5,7 @@ import { getMyFeed } from '../../../services/Posts.services'
 import './styles.scss'
 import LazyLoad from 'react-lazyload';
 import Loader from '../../../components/Loader'
+import EditProfileModal from '../../../components/EditProfileModal'
 
 const Me = ()=>{
 
@@ -28,6 +29,7 @@ const Me = ()=>{
     )
 
     const [loading, setLoading]  = useState(true)
+    const [isOpen, setOpen] = useState(true)
 
     const getMyPosts = ()=>{
         setLoading(true)
@@ -67,7 +69,9 @@ const Me = ()=>{
                     </div>
                 </div>
                 <div className="">
-                    <button className='editProfile'>
+                    <button 
+                        onClick={()=> setOpen(true)}
+                        className='editProfile'>
                         Edit profile
                     </button>
                 </div>
@@ -99,6 +103,14 @@ const Me = ()=>{
                     })
                 }
             </div>
+            <EditProfileModal isOpen={isOpen}>
+                <button
+                    onClick={()=> setOpen(false)}
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Save
+                </button>
+            </EditProfileModal>
         </>
     )
 }
