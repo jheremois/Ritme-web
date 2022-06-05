@@ -43,7 +43,6 @@ const Register = ()=> {
     setLoading(true)
 
     RegisterUser(form).then((res)=>{
-      console.log(res);
       setAlertBody(
         {
           title: `Welcome ${form.user_name}`,

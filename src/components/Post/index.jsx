@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import './styles.scss'
 import {ReactComponent as ReactLogo} from '../../assets/vote_icon.svg';
 import { Link } from "react-router-dom";
+import { sendVote } from "../../services/Posts.services";
+import AuthContext from "../../context/AuthCotext/AuthProvider";
+import { notify } from "../../helpers/const";
 
 function Post(
 {
@@ -16,27 +19,39 @@ function Post(
     upload_time,
     user_id,
     user_name,
+    updateFeed
 }
 ) {
+
+    const [authState, dispatch] = useContext(AuthContext)
 
     const upVotesPercent = (up_votes / (up_votes + down_votes)) * 100
     const downVotesPercent = (down_votes / (up_votes + down_votes)) * 100
 
+    const vote = (type)=>{
+        sendVote(authState.userToken, post_id, type).then((res)=>{
+        }).catch((err)=>{
+            notify("e", err.response.data.errMessage);
+        }).finally(()=>{
+            updateFeed()
+        })
+    }
+
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
             <div className="cardHeader flex px-5 pt-5">
-                <Link to={''} className="option items-center flex">
+                <Link className="option items-center flex">
                     <img className="r_rounded porfileImg w-12 h-12" src={profile_pic} alt={user_name} />
                 </Link>
                 <div className="postInfo px-3">
                     <div className="flex text-white">
-                        <Link to={''} className="option items-center flex">
+                        <Link className="option items-center flex">
                             <h4 className="text-white font-semibold">
                                 {user_name}
                             </h4>
                         </Link>
                         <p className="mx-1 font-bold">
-                            ◦ {i_voted} {upVotesPercent}
+                            ◦
                         </p>
                         <p className="text-gray-400">
                             {upload_time}
@@ -61,6 +76,12 @@ function Post(
             </div>
             <div className="cardFooter">
                 <button
+                onClick={
+                    ()=>(
+                        i_voted == 0 &&
+                        vote('p')
+                    )
+                } 
                 style={
                     i_voted == 0
                     ?
@@ -76,7 +97,13 @@ function Post(
                 className="upvote text-gray-50">
                     <ReactLogo className="upvote_icon"/>
                 </button>
-                <button 
+                <button
+                onClick={
+                    ()=>(
+                        i_voted == 0 &&
+                        vote('n')
+                    )
+                } 
                 style={
                     i_voted == 0
                     ?

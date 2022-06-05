@@ -31,12 +31,20 @@ const Me = ()=>{
     const [loading, setLoading]  = useState(true)
     const [isOpen, setOpen] = useState(false)
 
+    const getPosts = ()=>{
+        getMyFeed(authState.userToken).then((res)=>{
+            setPosts(res.data)
+        }).catch((err)=>{
+            
+        })
+    }
+
     const getMyPosts = ()=>{
         setLoading(true)
         getMyFeed(authState.userToken).then((res)=>{
             setPosts(res.data)
         }).catch((err)=>{
-            console.log(err);
+            
         }).finally(()=>{
             setLoading(false)
         })
@@ -97,6 +105,7 @@ const Me = ()=>{
                                     upload_time={post.upload_time}
                                     user_id={post.user_id}
                                     user_name={post.user_name}
+                                    updateFeed={getPosts}
                                 />
                             </LazyLoad>
                         )

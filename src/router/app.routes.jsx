@@ -26,9 +26,9 @@ export const AppRoutes = ()=>{
                     <Route exact path={`/`}>
                         <News/>
                     </Route>
-                    <Route exact path={`/trending`}>
+                   {/*  <Route exact path={`/trending`}>
                         <Trending/>
-                    </Route>
+                    </Route> */}
                     <Route exact path={`/me`}>
                         <Me/>
                     </Route>

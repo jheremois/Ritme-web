@@ -27,6 +27,14 @@ export const getPost = async (userToken, id) => {
     })
 }
 
+export const sendVote = async (user_token, post_id, vote_type) => {
+    return posts.post(`/vote/${post_id}/${vote_type}`, {}, {
+        headers: {
+          "user_token": user_token
+        }
+    })
+}
+
 // Api v2:
 /*
 export const getFeed = async () => {

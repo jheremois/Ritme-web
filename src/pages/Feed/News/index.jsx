@@ -5,7 +5,6 @@ import { getFeed } from '../../../services/Posts.services'
 import './styles.scss'
 import LazyLoad from 'react-lazyload';
 import Loader from '../../../components/Loader'
-import { Link } from 'react-router-dom'
 
 function News() {
   
@@ -15,12 +14,20 @@ function News() {
   }])
   const [loading, setLoading]  = useState(true)
 
+  const getPost = () => {
+    getFeed(authState.userToken).then((posts)=>{
+      setPosts(posts.data)
+    }).catch((err)=>{
+      
+    })
+  }
+
   const getMyFeed = () => {
     setLoading(true)
     getFeed(authState.userToken).then((posts)=>{
       setPosts(posts.data)
     }).catch((err)=>{
-      console.log(err);
+      
     }).finally(()=>{
       setLoading(false)
     })
@@ -42,7 +49,7 @@ function News() {
           posts.map((post, index)=>{
               return(
                 <LazyLoad
-                  key={post.post_id}
+                  key={post.post_id +'-'+ index}
                   height={300} offset={100}
                 >
                   <Post
@@ -57,6 +64,7 @@ function News() {
                     upload_time={post.upload_time}
                     user_id={post.user_id}
                     user_name={post.user_name}
+                    updateFeed={getPost}
                   />
                 </LazyLoad>
               )

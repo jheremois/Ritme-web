@@ -34,7 +34,6 @@ export default function MainRouter() {
 
     LoadDispatch(LoadAction)
     getCurrentUser(userJWT?userJWT.userToken:'').then((res)=>{
-      console.log("actual user: ", res);
       dispatch({
         user: res.data.response[0],
         type: types.authLoged,
@@ -47,7 +46,6 @@ export default function MainRouter() {
       })
       localStorage.removeItem('ritme-user')
     }).finally(()=>{
-      console.log("authState: ", authState);
       LoadDispatch(StopLoadAction)
     })
     

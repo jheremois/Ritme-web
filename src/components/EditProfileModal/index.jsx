@@ -36,7 +36,6 @@ const  EditProfileModal = ({isOpen, children}) => {
   const maxNumber = 1;
 
   const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
     setProfileForm({ ...profileForm, profile_pic: imageList[0]['data_url'] })
   };
@@ -151,9 +150,6 @@ const  EditProfileModal = ({isOpen, children}) => {
                         value={profileForm.user_description}
                       />
                     </div>
-                    <p className="mt-2 text-sm flex text-gray-200">
-                      Brief description for your profile. URLs are hyperlinked.
-                    </p>
                   </div>
 
                 </div>

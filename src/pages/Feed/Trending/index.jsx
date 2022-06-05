@@ -17,7 +17,7 @@ function Trending() {
       getFeed(authState.userToken).then((posts)=>{
         setPosts(posts.data)
       }).catch((err)=>{
-        console.log(err);
+        
       }).finally(()=>{
         setLoading(false)
       })

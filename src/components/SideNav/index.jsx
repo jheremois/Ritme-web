@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import './styles.scss'
 
 
@@ -6,9 +6,7 @@ import { Fragment, useContext } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import './styles.scss'
 import AuthContext from '../../context/AuthCotext/AuthProvider'
-import LoadContext from '../../context/LoadContext/LoadContext'
 import { types } from '../../context/AuthCotext/AuthReducer'
-import { getCurrentUser } from "../../services/User.services"
 import { Link } from "react-router-dom"
 
 
@@ -22,7 +20,7 @@ function SideNav() {
 
     const navigation = [
         { name: 'Home', icon: 'home', link: '/', current: true },
-        { name: 'Trending', icon: 'trending_up', link: '/trending', current: false },
+        // { name: 'Trending', icon: 'trending_up', link: '/trending', current: false },
         { name: 'Profile', icon: 'person', link: '/me', current: false },
     ]
 
@@ -53,14 +51,22 @@ function SideNav() {
                                 </Link>
                             ))
                         }
-                        <div className="option addPostBoton items-center flex">
+                        {/* <div className="option addPostBoton items-center flex">
                             <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
                                 add_circle
                             </span>
                             <h3 className="optionText">
                                 Add post
                             </h3>
-                        </div>
+                        </div> */}
+                        <a href="https://play.google.com/store/apps/details?id=ritme.app" target='_blank' className="my-3 option addPostBoton items-center flex">
+                            <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
+                                file_download
+                            </span>
+                            <h3 className="optionText">
+                                Download app
+                            </h3>
+                        </a>
                     </nav>
                     <div className="options">
                         <div className="userOptions">
@@ -91,21 +97,22 @@ function SideNav() {
                                         <Menu.Items className="userMenuBot origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <Menu.Item>
                                             {({ active }) => (
-                                            <a
-                                                href="#"
+                                            <Link 
+                                                to={'me'} 
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                             >
                                                 Your Profile
-                                            </a>
+                                            </Link>
                                             )}
                                         </Menu.Item>
                                         <Menu.Item>
                                             {({ active }) => (
-                                            <a
-                                                href="#"
+                                            <a 
+                                                href="https://play.google.com/store/apps/details?id=ritme.app" 
+                                                target='_blank'
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                             >
-                                                Settings
+                                                Download app
                                             </a>
                                             )}
                                         </Menu.Item>

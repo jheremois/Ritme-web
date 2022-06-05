@@ -20,9 +20,7 @@ const OpenPost = ()=>{
     useEffect(()=>{
         getPost(authState.userToken, id).then((res)=>{
             setPost(res.data[0])
-            console.log("bien");
         }).catch(()=>{
-            console.log("mal");
             setNoPost(true)
         }).finally(()=>{
             setLoading(false)
