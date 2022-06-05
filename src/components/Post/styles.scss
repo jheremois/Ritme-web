@@ -3,8 +3,11 @@
     margin: 30px auto;
 }
 .cardFooter{
+    overflow: hidden;
+    border-radius: 0px 0px 5px 5px;
     display: flex;
     button{
+        transition-duration: 400ms;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,12 +17,10 @@
         }
     }
     .downvote{
-        width: 50%;
         border-left: 1px solid #ffffff22;
     }
     .upvote{
         border-right: 1px solid #ffffff22;
-        width: 50%;
     }
     .downvote_icon{
         transform: rotate(180deg);

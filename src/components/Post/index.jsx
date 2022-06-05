@@ -18,6 +18,10 @@ function Post(
     user_name,
 }
 ) {
+
+    const upVotesPercent = (up_votes / (up_votes + down_votes)) * 100
+    const downVotesPercent = (down_votes / (up_votes + down_votes)) * 100
+
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
             <div className="cardHeader flex px-5 pt-5">
@@ -32,7 +36,7 @@ function Post(
                             </h4>
                         </Link>
                         <p className="mx-1 font-bold">
-                            ◦
+                            ◦ {i_voted} {upVotesPercent}
                         </p>
                         <p className="text-gray-400">
                             {upload_time}
@@ -56,10 +60,36 @@ function Post(
                 </Link>
             </div>
             <div className="cardFooter">
-                <button className="upvote">
+                <button
+                style={
+                    i_voted == 0
+                    ?
+                    {
+                        width: "50%"
+                    }
+                    :
+                    {
+                        background: 'var(--indigo)',
+                        width: `${upVotesPercent}%`
+                    }
+                }
+                className="upvote text-gray-50">
                     <ReactLogo className="upvote_icon"/>
                 </button>
-                <button className="downvote">
+                <button 
+                style={
+                    i_voted == 0
+                    ?
+                    {
+                        width: "50%"
+                    }
+                    :
+                    {
+                        background: 'var(--red)',
+                        width: `${downVotesPercent}%`
+                    }
+                }
+                className="downvote text-gray-50">
                     <ReactLogo className="downvote_icon"/>
                 </button>
             </div>

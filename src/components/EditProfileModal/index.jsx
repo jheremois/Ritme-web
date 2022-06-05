@@ -27,11 +27,8 @@ const  EditProfileModal = ({isOpen, children}) => {
       notify("g", "Profile updated!")
     }).catch((err)=>{
       notify("e", err.response.data)
-      console.log("el error: ", err.response.data);
     }).finally(()=>{
       setLoading(false)
-      console.log("profile new info: ", profileForm);
-      //console.log("profile new info: ", images[0].data_url);
     })
   }
 
