@@ -86,7 +86,7 @@ const  EditProfileModal = ({isOpen, children}) => {
                                     onClick={onImageUpload}
                                     {...dragProps}
                                   >
-                                    <img className='uploadPic_ritme' src={profileForm.profile_pic} alt="" width="200" />
+                                    <img className='uploadPic_ritme' src={profileForm.profile_pic} alt=""/>
                                     Update
                                   </button>
                                 </div>
@@ -97,7 +97,7 @@ const  EditProfileModal = ({isOpen, children}) => {
                                   <div key={index} className="image-item__btn-wrapper w-full flex flex-col items-center justify-center">
                                     <div className="image-item__btn-wrapper w-full">
                                       <button className='w-full py-3' onClick={() => onImageUpdate(index)}>
-                                        <img className='uploadPic_ritme' src={image['data_url']} alt="" width="200" />
+                                        <img className='uploadPic_ritme' src={image['data_url']} alt=""/>
                                         Update
                                       </button>
                                       {/* <button onClick={() => onImageRemove(index)}>Remove</button> */}

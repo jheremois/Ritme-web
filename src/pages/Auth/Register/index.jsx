@@ -144,7 +144,7 @@ const Register = ()=> {
               <br />
               <AuthInput 
                 label="Password"
-                type="text"
+                type="password"
                 value={form.password}
                 validator={inValidForm.password}
                 errMsg={"Invalid password (password must have atleast 5 characters)"}
@@ -154,7 +154,7 @@ const Register = ()=> {
               <br />
               <AuthInput 
                 label="Repeat password"
-                type="text"
+                type="password"
                 value={form.rPassword}
                 validator={inValidForm.rPassword}
                 errMsg={"Passwords does not match"}

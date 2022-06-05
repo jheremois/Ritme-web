@@ -101,7 +101,7 @@ const Login = ()=> {
               <br />
               <AuthInput 
                 label="Password"
-                type="text"
+                type="password"
                 value={form.password}
                 validator={inValidForm.password}
                 errMsg={"Invalid password"}
