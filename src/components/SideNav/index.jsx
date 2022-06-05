@@ -64,7 +64,7 @@ function SideNav() {
                                 file_download
                             </span>
                             <h3 className="optionText">
-                                Download app
+                                Get app
                             </h3>
                         </a>
                     </nav>
