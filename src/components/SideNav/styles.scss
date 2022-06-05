@@ -2,6 +2,9 @@
     width: 20vw !important;
     border-right: solid 2px #ffffff39;
 }
+.ritme_nav{
+    margin-left: 0.5rem;
+}
 aside{
     width: 19.9vw !important;
     top: 0px;
@@ -62,6 +65,7 @@ aside{
 
 }
 
+
 @media screen and (max-width: 1024px){
     .nav{
         width: 10vw !important;
@@ -82,5 +86,20 @@ aside{
         .option:hover{
             background-color: azure;
         }
+    }
+}
+
+
+.addPostBoton{
+    transition-duration: 300ms;
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    padding: 10px 20px !important;
+    border-radius: 70rem;
+    background-color: var(--indigo);
+    &:hover{
+        color: var(--indigo) !important;
+        background-color: white;
     }
 }

@@ -38,7 +38,7 @@ const OpenPost = ()=>{
                 :
                     noPost
                     ?
-                        <h1> 
+                        <h1 className='text-gray-200 font-semibold text-4xl my-12'> 
                             No post
                         </h1>
                     :

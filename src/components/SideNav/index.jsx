@@ -40,7 +40,7 @@ function SideNav() {
         <>
             <div className="nav">
                 <aside className="r_flexColumn r_dFlex">
-                    <nav className="r_flexColumn r_dFlex">
+                    <nav className="r_flexColumn r_dFlex ritme_nav">
                         {
                             navigation.map((res)=>(
                                 <Link to={res.link} className="option items-center flex">
@@ -53,6 +53,14 @@ function SideNav() {
                                 </Link>
                             ))
                         }
+                        <div className="option addPostBoton items-center flex">
+                            <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
+                                add_circle
+                            </span>
+                            <h3 className="optionText">
+                                Add post
+                            </h3>
+                        </div>
                     </nav>
                     <div className="options">
                         <div className="userOptions">

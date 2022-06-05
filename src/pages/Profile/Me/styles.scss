@@ -7,8 +7,10 @@
         img{
             width: 9rem;
             height: 9rem;
+            min-width: 9rem;
         }
         .userMainInfo{
+            max-width: 90%;
             text-align: start;
             padding: 1rem;        
             h3{
@@ -21,7 +23,9 @@
         }
     }
     .editProfile{
+        max-width: 100%;
         padding: 5px 20px;
+        white-space: nowrap;
         border-radius: 5px;
         border: solid 3px #d3d3d34c;
     }

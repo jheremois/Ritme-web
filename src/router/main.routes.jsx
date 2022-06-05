@@ -13,6 +13,7 @@ import Loader from "../components/Loader";
 import { types } from "../context/AuthCotext/AuthReducer"
 import LoadContext from "../context/LoadContext/LoadContext";
 import { typesLoad } from "../context/LoadContext/LoadReducer";
+import { Toaster } from "react-hot-toast";
 
 export default function MainRouter() {
 
@@ -54,6 +55,7 @@ export default function MainRouter() {
 
   return (
     <>
+    <Toaster />
     {
       loadState.isLoading
       ?

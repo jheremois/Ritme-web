@@ -18,12 +18,12 @@ export const getCurrentUser = async ()=>{
     }
 }
 
-export const updateMe = async (data)=>{
+export const updateMe = async (data, userToken)=>{
     try {
       if(storedJwt != null){
         return users.patch("/user", data, {
           headers: {
-            "user_token": storedJwt
+            "user_token": userToken
           }
         })
       }else{

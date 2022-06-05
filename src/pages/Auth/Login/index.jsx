@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import AuthInput from '../../../components/AuthInput'
 import { emailRegex } from '../../../helpers/const'
 import { loginUser } from '../../../services/Auth.services'
-import { Toaster } from 'react-hot-toast';
 import { notify } from '../../../helpers/const'
 import AuthContext from '../../../context/AuthCotext/AuthProvider'
 import { types } from '../../../context/AuthCotext/AuthReducer'
@@ -76,7 +75,6 @@ const Login = ()=> {
 
   return (
     <>
-      <Toaster />
       <div className="r_hScreen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 r_bgGray">
         <div className="fadeInAni max-w-md w-full space-y-8 r_bgBlack r_paddingXl rounded-lg border-2 border-gray-600">
           <div>
