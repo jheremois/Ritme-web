@@ -1,28 +1,36 @@
 import { posts } from "./services";
 
-export const getMyFeed = async (userToken) => {
+export const getMyFeed = async (user_token) => {
 
     return posts.get("/profile", {
         headers: {
-          "user_token": userToken
+          "user_token": user_token
         }
     })
 }
 
-export const getFeed = async (userToken) => {
+export const getFeed = async (user_token) => {
 
     return posts.get(`/feed`, {
         headers: {
-            "user_token": userToken
+            "user_token": user_token
         }
     })
 }
 
-export const getPost = async (userToken, id) => {
+export const getPost = async (user_token, id) => {
 
     return posts.get(`/post/${id}`, {
         headers: {
-            "user_token": userToken
+            "user_token": user_token
+        }
+    })
+}
+
+export const getUserFeed = async (user_token, id) => {
+    return posts.get(`/profile/${id}`, {
+        headers: {
+            "user_token": user_token
         }
     })
 }

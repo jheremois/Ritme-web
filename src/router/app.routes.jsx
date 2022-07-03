@@ -32,6 +32,9 @@ export const AppRoutes = ()=>{
                     <Route exact path={`/me`}>
                         <Me/>
                     </Route>
+                    <Route exact path={`/user/:id`}>
+                        <Me/>
+                    </Route>
                     <Route path={`/post/:id`}>
                         <OpenPost/>
                     </Route>

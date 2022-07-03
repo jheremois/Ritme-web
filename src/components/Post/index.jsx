@@ -37,6 +37,8 @@ function Post(
         })
     }
 
+    const upload_date = upload_time.slice(0,10)
+
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
             <div className="cardHeader flex px-5 pt-5">
@@ -45,16 +47,16 @@ function Post(
                 </div>
                 <div className="postInfo px-3">
                     <div className="flex text-white">
-                        <div className="option items-center flex">
+                        <Link to={`/user/${user_id}`} className="option items-center flex">
                             <h4 className="text-white font-semibold">
                                 {user_name}
                             </h4>
-                        </div>
+                        </Link>
                         <p className="mx-1 font-bold">
                             ◦
                         </p>
                         <p className="text-gray-400">
-                            {upload_time}
+                            {upload_date}
                         </p>
                     </div>
                     <div className="tag flex my-2">

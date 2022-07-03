@@ -35,6 +35,23 @@ export const updateMe = async (data, userToken)=>{
   
 }
 
+export const getUsers = async (userToken, user_id)=>{
+    try {
+        if(userToken){
+            return users.get(`/user/${user_id}`, {
+                headers: {
+                    "user_token": userToken
+                }
+            })
+        }else{
+            return null
+        }
+    } catch(e) {
+        
+        return null
+    }
+  }
+
 /*
 export const getUsers = async ()=>{
   try {

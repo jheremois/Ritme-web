@@ -1,11 +1,13 @@
 import react, {useContext, useEffect, useState} from 'react'
 import Post from '../../../components/Post'
 import AuthContext from '../../../context/AuthCotext/AuthProvider'
-import { getMyFeed } from '../../../services/Posts.services'
+import { getMyFeed, getUserFeed } from '../../../services/Posts.services'
 import './styles.scss'
 import LazyLoad from 'react-lazyload';
 import Loader from '../../../components/Loader'
 import EditProfileModal from '../../../components/EditProfileModal'
+import { useParams } from 'react-router-dom'
+import { getUsers } from '../../../services/User.services'
 
 const Me = ()=>{
 
@@ -28,31 +30,80 @@ const Me = ()=>{
         ]
     )
 
+    const [user, setUser] = useState(
+        {
+            profile_pic: '',
+            user_name: '',
+            user_name: '',
+            user_description: ''
+        }
+    )
+
     const [loading, setLoading]  = useState(true)
     const [isOpen, setOpen] = useState(false)
 
+    var { id } = useParams()
+
     const getPosts = ()=>{
-        getMyFeed(authState.userToken).then((res)=>{
-            setPosts(res.data)
-        }).catch((err)=>{
-            
-        })
+        !id
+        ?
+            getMyFeed(authState.userToken).then((res)=>{
+                setPosts(res.data)
+            }).catch((err)=>{
+                
+            })
+        :
+            getUserFeed(authState.userToken, id).then((res)=>{
+                setPosts(res.data)
+            }).catch((err)=>{
+                
+            })
     }
 
     const getMyPosts = ()=>{
         setLoading(true)
-        getMyFeed(authState.userToken).then((res)=>{
-            setPosts(res.data)
-        }).catch((err)=>{
-            
-        }).finally(()=>{
-            setLoading(false)
-        })
+        !id
+        ?
+            getMyFeed(authState.userToken).then((res)=>{
+                setPosts(res.data)
+            }).catch((err)=>{
+                
+            }).finally(()=>{
+                setLoading(false)
+            })
+        :
+            getUserFeed(authState.userToken, id).then((res)=>{
+                setPosts(res.data)
+            }).catch((err)=>{
+                
+            }).finally(()=>{
+                setLoading(false)
+            })
+    }
+
+    const getUser = ()=>{
+        !id
+        ?
+            setUser({
+                profile_pic: authState.user.profile_pic,
+                user_name: authState.user.user_name,
+                user_description: authState.user.user_description
+            })
+        :
+            getUsers(authState.userToken, id).then((res)=>{
+                console.log("user res", res.data.response[0]);
+                setUser({
+                    profile_pic: res.data.response[0].profile_pic,
+                    user_name: res.data.response[0].user_name,
+                    user_description: res.data.response[0].user_description
+                })
+            })
     }
 
     useEffect(()=>{
+        getUser()
         getMyPosts()
-    }, [])
+    }, [id])
 
     if(loading){
         return(
@@ -65,23 +116,23 @@ const Me = ()=>{
             <div className="profile flex text-gray-200">
                 <div className="userInfo flex">
                     <div className="">
-                        <img className='r_rounded' src={authState.user.profile_pic} alt={authState.user.user_name} />
+                        <img className='r_rounded' src={user.profile_pic} alt={user.user_name} />
                     </div>
                     <div className="userMainInfo text-gray-100">
                         <h3>
-                            {authState.user.user_name}
+                            {user.user_name}
                         </h3>
                         <p>
-                            {authState.user.user_description}
+                            {user.user_description}
                         </p>
                     </div>
                 </div>
                 <div className="">
-                    <button 
+                   {!id && <button 
                         onClick={()=> setOpen(true)}
                         className='editProfile'>
                         Edit profile
-                    </button>
+                    </button>}
                 </div>
             </div>
             <div className="miFeed">
