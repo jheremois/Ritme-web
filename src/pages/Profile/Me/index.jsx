@@ -89,11 +89,11 @@ const Me = ()=>{
                     posts.map((post, index)=>{
                         return(
                             <LazyLoad
-                                key={post.post_id}
+                                key={post.post_id + '-' + index}
                                 height={300} offset={100}
                             >
                                 <Post
-                                    key={post.post_id}
+                                    key={post.post_id + ' -' + index}
                                     down_votes={post.down_votes}
                                     i_voted={post.i_voted}
                                     post_description={post.post_description}

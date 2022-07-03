@@ -40,16 +40,16 @@ function Post(
     return(
         <div className="postCard r_bgGray rounded-md m-5 shadow-lg">
             <div className="cardHeader flex px-5 pt-5">
-                <Link className="option items-center flex">
+                <div className="option items-center flex">
                     <img className="r_rounded porfileImg w-12 h-12" src={profile_pic} alt={user_name} />
-                </Link>
+                </div>
                 <div className="postInfo px-3">
                     <div className="flex text-white">
-                        <Link className="option items-center flex">
+                        <div className="option items-center flex">
                             <h4 className="text-white font-semibold">
                                 {user_name}
                             </h4>
-                        </Link>
+                        </div>
                         <p className="mx-1 font-bold">
                             ◦
                         </p>

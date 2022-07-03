@@ -126,7 +126,7 @@ const  EditProfileModal = ({isOpen, children}) => {
                           type="text"
                           name="company-website"
                           id="company-website"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 bg-black text-white"
                           placeholder="User name"
                         />
                       </div>
@@ -145,7 +145,7 @@ const  EditProfileModal = ({isOpen, children}) => {
                         id="about"
                         name="about"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block bg-black text-white w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="..."
                         value={profileForm.user_description}
                       />

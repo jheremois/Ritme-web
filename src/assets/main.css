@@ -1603,6 +1603,9 @@ select {
 .h-screen {
   height: 100vh;
 }
+.h-44 {
+  height: 11rem;
+}
 .h-14 {
   height: 3.5rem;
 }

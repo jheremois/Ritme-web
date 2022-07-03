@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import './styles.scss'
 
 
@@ -8,6 +8,7 @@ import './styles.scss'
 import AuthContext from '../../context/AuthCotext/AuthProvider'
 import { types } from '../../context/AuthCotext/AuthReducer'
 import { Link } from "react-router-dom"
+import CreatePostModal from "../CreatePostModal"
 
 
 function classNames(...classes) {
@@ -17,6 +18,7 @@ function classNames(...classes) {
 function SideNav() {
 
     const [authState, dispatch] = useContext(AuthContext)
+    const [isOpen, setOpen] = useState(false)
 
     const navigation = [
         { name: 'Home', icon: 'home', link: '/', current: true },
@@ -36,12 +38,16 @@ function SideNav() {
 
     return(
         <>
+            <CreatePostModal isOpen={isOpen} setOpen={setOpen} />
             <div className="nav">
                 <aside className="r_flexColumn r_dFlex">
                     <nav className="r_flexColumn r_dFlex ritme_nav">
                         {
                             navigation.map((res)=>(
-                                <Link to={res.link} className="option items-center flex">
+                                <Link
+                                    key={res.link + "-" + res.icon}
+                                    to={res.link} className="option items-center flex"
+                                >
                                     <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
                                         {res.icon}
                                     </span>
@@ -59,7 +65,15 @@ function SideNav() {
                                 Add post
                             </h3>
                         </div> */}
-                        <a href="https://play.google.com/store/apps/details?id=ritme.app" target='_blank' className="my-3 option addPostBoton items-center flex">
+                        <button onClick={()=> setOpen(true)} className="my-3 option addPostBoton items-center flex">
+                            <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
+                                add
+                            </span>
+                            <h3 className="optionText">
+                                New post
+                            </h3>
+                        </button>
+                        <a href="https://play.google.com/store/apps/details?id=ritme.app" target='_blank' className="my-3 option getAppBoton items-center flex">
                             <span className="optionIcon material-symbols-outlined w-10 items-center flex justify-center">
                                 file_download
                             </span>

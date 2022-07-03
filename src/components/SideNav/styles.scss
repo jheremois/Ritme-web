@@ -103,3 +103,18 @@ aside{
         background-color: white;
     }
 }
+.getAppBoton{
+    margin-top: 2rem;
+    transition-duration: 300ms;
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    padding: 10px 20px !important;
+    border-radius: 70rem;
+    border: solid 4px var(--indigo);
+    color: var(--indigo);
+    &:hover{
+        color: var(--indigo) !important;
+        background-color: white;
+    }
+}
