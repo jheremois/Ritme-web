@@ -10,6 +10,6 @@ const envDev = {
     postsServicePort: "https://ritme-posts-service-ub3mx35oqq-uc.a.run.app"
 }
 
-const env = envLocal
+const env = envDev
 
 export default env
