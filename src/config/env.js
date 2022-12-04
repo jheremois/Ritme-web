@@ -1,7 +1,7 @@
 const envLocal = {
-    authServicePort: "http://192.168.1.31:4000",
-    userServicePort: "http://192.168.1.31:4100",
-    postsServicePort: "http://192.168.1.31:4200"
+    authServicePort: "http://192.168.0.3:4000",
+    userServicePort: "http://192.168.0.3:4100",
+    postsServicePort: "http://192.168.0.3:4200"
 }
 
 const envDev = {
@@ -10,6 +10,6 @@ const envDev = {
     postsServicePort: "https://ritme-posts-service-ub3mx35oqq-uc.a.run.app"
 }
 
-const env = envDev
+const env = envLocal
 
 export default env
